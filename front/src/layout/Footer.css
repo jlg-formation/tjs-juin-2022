@@ -1,0 +1,8 @@
+.Footer a {
+  text-decoration: inherit;
+  color: inherit;
+}
+
+.Footer a:hover {
+  text-decoration: underline;
+}
