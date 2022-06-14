@@ -22,6 +22,7 @@ div#root {
 }
 
 main {
+  flex: 1;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -30,6 +31,10 @@ main {
   max-width: 100ch;
   margin: 0 auto;
   padding: 0.5em;
+
+  &.Home {
+    flex: 0;
+  }
 }
 
 h1 {

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <main>
+    <main className="Home">
       <h1>Gérer efficacement votre stock !</h1>
       <div className="jumbo">
         <Link to="/stock">
