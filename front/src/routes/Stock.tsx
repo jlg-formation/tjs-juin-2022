@@ -1,6 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Article } from "../interfaces/Article";
+import ArticleTable from "../widgets/ArticleTable";
 
 function Stock() {
+  const [articles, setArticles] = useState([
+    { id: "1", name: "Tournevis", price: 2.99, qty: 123 },
+    { id: "3", name: "Pelle", price: 4.5, qty: 200 },
+    { id: "4", name: "Marteau", price: 1.5, qty: 20 },
+  ] as Article[]);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
   return (
     <main>
       <h1>Liste des articles</h1>
@@ -12,37 +24,7 @@ function Stock() {
           </Link>
           <button>Supprimer</button>
         </nav>
-        <table>
-          <thead>
-            <tr>
-              <th className="name">Nom</th>
-              <th className="price">Prix</th>
-              <th className="qty">Quantité</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="name">Tournevis</td>
-              <td className="price">2.34 €</td>
-              <td className="qty">567</td>
-            </tr>
-            <tr>
-              <td className="name">Pelle</td>
-              <td className="price">6.20 €</td>
-              <td className="qty">34</td>
-            </tr>
-            <tr>
-              <td className="name">Marteau</td>
-              <td className="price">4.50 €</td>
-              <td className="qty">123</td>
-            </tr>
-            <tr>
-              <td className="name">Perceuse</td>
-              <td className="price">25.00 €</td>
-              <td className="qty">17</td>
-            </tr>
-          </tbody>
-        </table>
+        <ArticleTable articles={articles} />
       </div>
     </main>
   );
