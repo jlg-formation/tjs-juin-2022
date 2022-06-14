@@ -1,9 +1,9 @@
 import { Article } from "../interfaces/Article";
 
-const ArticleTable: React.FC<{ articles: Article[] }> = ({
-  articles,
+const ArticleTable: React.FC<{ articleList: Article[] }> = ({
+  articleList,
 }: {
-  articles: Article[];
+  articleList: Article[];
 }) => {
   return (
     <>
@@ -16,7 +16,7 @@ const ArticleTable: React.FC<{ articles: Article[] }> = ({
           </tr>
         </thead>
         <tbody>
-          {articles.map((article) => {
+          {articleList.map((article) => {
             return (
               <tr key={article.id}>
                 <td className="name">{article.name}</td>

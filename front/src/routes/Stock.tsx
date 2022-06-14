@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Article } from "../interfaces/Article";
 import ArticleTable from "../widgets/ArticleTable";
@@ -24,7 +24,7 @@ function Stock() {
           </Link>
           <button>Supprimer</button>
         </nav>
-        <ArticleTable articles={articles} />
+        <ArticleTable articleList={articles} />
       </div>
     </main>
   );
