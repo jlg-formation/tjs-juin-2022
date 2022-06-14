@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
@@ -12,7 +13,7 @@ function Footer() {
         justifyContent: "center",
       }}
     >
-      <a href="#">Mentions Légales</a>
+      <Link to="/legal">Mentions Légales</Link>
     </footer>
   );
 }
