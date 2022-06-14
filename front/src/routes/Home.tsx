@@ -1,9 +1,13 @@
+import { Link } from "react-router-dom";
+
 function Home() {
   return (
     <main>
       <h1>Gérer efficacement votre stock !</h1>
       <div className="jumbo">
-        <button className="primary">Voir le stock</button>
+        <Link to="/stock">
+          <button className="primary">Voir le stock</button>
+        </Link>
       </div>
     </main>
   );
