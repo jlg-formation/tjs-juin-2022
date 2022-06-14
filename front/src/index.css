@@ -18,3 +18,13 @@ div#root {
   flex-flow: column;
   justify-content: space-between;
 }
+
+main {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+}
