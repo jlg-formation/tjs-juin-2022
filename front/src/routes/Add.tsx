@@ -1,11 +1,24 @@
+import { useState } from "react";
+
 function Add() {
+  const [name, setName] = useState("xxx");
+
   return (
     <main>
       <h1>Ajouter un article</h1>
       <form>
         <label>
           <div>Nom</div>
-          <input type="text" />
+          <input
+            type="text"
+            value={name}
+            onChange={(event) => {
+              console.log("event: ", event);
+              const newName = event.target.value;
+              console.log("newName: ", newName);
+              setName(newName);
+            }}
+          />
         </label>
         <label>
           <div>Prix</div>
@@ -17,6 +30,7 @@ function Add() {
         </label>
         <button className="primary">Ajouter</button>
       </form>
+      <span>name: {name}</span>
     </main>
   );
 }
