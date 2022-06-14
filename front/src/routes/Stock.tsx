@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Stock() {
   return (
     <main>
@@ -5,7 +7,9 @@ function Stock() {
       <div className="content">
         <nav>
           <button>Rafraîchir</button>
-          <button>Ajouter</button>
+          <Link to="add">
+            <button>Ajouter</button>
+          </Link>
           <button>Supprimer</button>
         </nav>
         <table>
