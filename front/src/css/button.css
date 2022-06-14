@@ -1,0 +1,34 @@
+button {
+  padding: 0.5em 1em;
+  border: 0.1em solid #eee;
+  background-color: #eee;
+  border-radius: 0.3em;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:not(:disabled):hover {
+  background-color: #ddd;
+  border-color: #ddd;
+}
+button:not(:disabled):active {
+  background-color: #ccc;
+  border-color: #ccc;
+}
+
+button:not(:disabled).primary {
+  background-color: #333;
+  border-color: #333;
+  color: #fff;
+}
+
+button:not(:disabled).primary:hover {
+  background-color: #444;
+  border-color: #444;
+}
+button:not(:disabled).primary:active {
+  background-color: #555;
+  border-color: #555;
+}
