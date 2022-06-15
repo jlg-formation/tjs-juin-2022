@@ -1,5 +1,7 @@
 import { Article, NewArticle } from "../interfaces/Article";
 
+const URL = "http://localhost:3500/api/articles";
+
 class API {
   articles: Article[] = [];
 
@@ -7,7 +9,7 @@ class API {
     if (newArticle.name === "Trucxxx") {
       throw new Error("cannot add a trucxxx");
     }
-    const response = await fetch("http://localhost:3500/api/articles", {
+    const response = await fetch(URL, {
       method: "POST",
       body: JSON.stringify(newArticle),
       headers: {
@@ -20,12 +22,21 @@ class API {
   }
 
   async removeArticles(ids: string[]) {
-    this.articles = this.articles.filter((a) => !ids.includes(a.id));
+    const response = await fetch(URL, {
+      method: "DELETE",
+      body: JSON.stringify(ids),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status !== 204) {
+      throw new Error("oups... Cannot remove articles.");
+    }
   }
 
   async retrieveAllArticles(): Promise<Article[]> {
     console.log("appel http");
-    const response = await fetch("http://localhost:3500/api/articles");
+    const response = await fetch(URL);
     if (response.status !== 200) {
       throw new Error("oups... Cannot retrieve articles.");
     }

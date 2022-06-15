@@ -38,6 +38,7 @@ function Stock() {
     (async () => {
       try {
         await api.removeArticles(ids);
+        setSelectedArticle(new Set());
         const remainingArticles = await api.retrieveAllArticles();
         setArticles(remainingArticles);
       } catch (err) {
