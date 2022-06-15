@@ -5,7 +5,7 @@ import morgan from "morgan";
 import { api } from "./api-articles";
 
 const app = express();
-const port = 3500;
+const port = +(process.env.GS_PORT || 3500);
 const wwwDir = "../front/build";
 
 app.use(cors());
