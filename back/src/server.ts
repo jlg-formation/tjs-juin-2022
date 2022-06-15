@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
+import serveIndex from "serve-index";
+import { api } from "./api-articles";
 
 const app = express();
 const port = 3500;
+const wwwDir = ".";
 
 app.use(cors());
 
@@ -11,9 +14,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use("/api", api);
+
+app.use(express.static(wwwDir));
+app.use(serveIndex(wwwDir, { icons: true }));
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

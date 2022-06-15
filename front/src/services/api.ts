@@ -2,10 +2,7 @@ import { Article, NewArticle } from "../interfaces/Article";
 import { generateId, sleep } from "../utils";
 
 class API {
-  articles = [
-    { id: "1", name: "Tournevis", price: 1.23, qty: 100 },
-    { id: "2", name: "Marteau", price: 4.5, qty: 34 },
-  ];
+  articles: Article[] = [];
 
   async addArticle(newArticle: NewArticle) {
     await sleep(2000);
