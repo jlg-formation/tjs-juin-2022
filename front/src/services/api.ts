@@ -1,16 +1,22 @@
 import { Article, NewArticle } from "../interfaces/Article";
-import { generateId, sleep } from "../utils";
 
 class API {
   articles: Article[] = [];
 
   async addArticle(newArticle: NewArticle) {
-    await sleep(2000);
     if (newArticle.name === "Trucxxx") {
       throw new Error("cannot add a trucxxx");
     }
-    const article = { ...newArticle, id: generateId() };
-    this.articles.push(article);
+    const response = await fetch("http://localhost:3500/api/articles", {
+      method: "POST",
+      body: JSON.stringify(newArticle),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (response.status !== 201) {
+      throw new Error("oups... Cannot add article.");
+    }
   }
 
   async removeArticles(ids: string[]) {

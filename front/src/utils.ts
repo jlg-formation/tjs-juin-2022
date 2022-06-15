@@ -3,7 +3,3 @@ export const sleep = (delayMs: number) => {
     setTimeout(resolve, delayMs);
   });
 };
-
-export const generateId = () => {
-  return Date.now() + "_" + Math.floor(Math.random() * 1e6);
-};
