@@ -22,8 +22,12 @@ class API {
 
   async retrieveAllArticles(): Promise<Article[]> {
     console.log("appel http");
-    await sleep(2000);
-    return this.articles;
+    const response = await fetch("http://localhost:3500/api/articles");
+    if (response.status !== 200) {
+      throw new Error("oups... Cannot retrieve articles.");
+    }
+    const articles = await response.json();
+    return articles;
   }
 }
 
