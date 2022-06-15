@@ -35,7 +35,6 @@ class API {
   }
 
   async retrieveAllArticles(): Promise<Article[]> {
-    console.log("appel http");
     const response = await fetch(URL);
     if (response.status !== 200) {
       throw new Error("oups... Cannot retrieve articles.");

@@ -2,7 +2,7 @@ const fs = require("fs");
 
 fs.readdir(".", (err, files) => {
   if (err) {
-    console.log("err: ", err);
+    console.error("err: ", err);
     return;
   }
   console.log("files: ", files);

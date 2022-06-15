@@ -31,7 +31,6 @@ function Stock() {
         const articles = await api.retrieveAllArticles();
         setArticles(articles);
       } catch (err) {
-        console.log("err: ", err);
         if (err instanceof Error) {
           setErrorMsg(err.message);
         } else {
@@ -44,9 +43,8 @@ function Stock() {
   };
 
   const remove = () => {
-    console.log("about to remove selected articles");
     const ids = [...selectedArticle].map((a) => a.id);
-    console.log("ids: ", ids);
+
     (async () => {
       try {
         setIsRemoving(true);
@@ -55,7 +53,6 @@ function Stock() {
         setSelectedArticle(new Set());
         setArticles(remainingArticles);
       } catch (err) {
-        console.log("err: ", err);
       } finally {
         setIsRemoving(false);
       }

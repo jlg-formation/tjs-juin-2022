@@ -15,7 +15,6 @@ const ArticleTable: React.FC<{
 
   const toggle = (article: Article) => {
     return () => {
-      console.log("toggle", article);
       const newSet = new Set(selectedArticle);
       if (newSet.has(article)) {
         newSet.delete(article);

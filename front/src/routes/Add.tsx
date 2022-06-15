@@ -37,7 +37,6 @@ function Add() {
               if (err instanceof Error) {
                 setErrorMsg(err.message);
               }
-              console.log("err: ", err);
             }
           })();
         }}
@@ -48,9 +47,8 @@ function Add() {
             type="text"
             value={name}
             onChange={(event) => {
-              console.log("event: ", event);
               const newName = event.target.value;
-              console.log("newName: ", newName);
+
               setName(newName);
             }}
           />
@@ -61,9 +59,8 @@ function Add() {
             type="number"
             value={price}
             onChange={(event) => {
-              console.log("event: ", event);
               const newPrice = +event.target.value;
-              console.log("newPrice: ", newPrice);
+
               setPrice(newPrice);
             }}
           />
