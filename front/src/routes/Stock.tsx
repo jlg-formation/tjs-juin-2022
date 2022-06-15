@@ -13,6 +13,10 @@ function Stock() {
   const [selectedArticle, setSelectedArticle] = useState(new Set<Article>());
 
   useEffect(() => {
+    refresh();
+  }, []);
+
+  const refresh = () => {
     (async () => {
       try {
         setIsLoading(true);
@@ -29,7 +33,7 @@ function Stock() {
         setIsLoading(false);
       }
     })();
-  }, []);
+  };
 
   const remove = () => {
     console.log("about to remove selected articles");
@@ -52,7 +56,7 @@ function Stock() {
       <h1>Liste des articles</h1>
       <div className="content">
         <nav>
-          <button>Rafraîchir</button>
+          <button onClick={refresh}>Rafraîchir</button>
           <Link to="add">
             <button>Ajouter</button>
           </Link>
