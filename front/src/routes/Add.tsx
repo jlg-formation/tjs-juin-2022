@@ -11,8 +11,9 @@ function Add() {
     <main>
       <h1>Ajouter un article</h1>
       <form
-        onSubmit={(event) => {
+        onSubmit={async (event) => {
           event.preventDefault();
+
           (async () => {
             try {
               const article: NewArticle = {
@@ -20,7 +21,7 @@ function Add() {
                 price,
                 qty,
               };
-              // await api.addArticle(article);
+              await api.addArticle(article);
             } catch (err) {
               console.log("err: ", err);
             }
