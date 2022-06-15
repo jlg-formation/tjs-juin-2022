@@ -17,7 +17,7 @@ class API {
   }
 
   async removeArticles(ids: string[]) {
-    throw new Error("Method not implemented.");
+    this.articles = this.articles.filter((a) => !ids.includes(a.id));
   }
 
   async retrieveAllArticles(): Promise<Article[]> {

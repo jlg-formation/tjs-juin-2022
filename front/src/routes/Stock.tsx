@@ -38,6 +38,8 @@ function Stock() {
     (async () => {
       try {
         await api.removeArticles(ids);
+        const remainingArticles = await api.retrieveAllArticles();
+        setArticles(remainingArticles);
       } catch (err) {
         console.log("err: ", err);
       }
