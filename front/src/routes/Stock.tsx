@@ -10,7 +10,7 @@ function Stock() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const [selectedArticle, setSelectedArticle] = useState(new Set());
+  const [selectedArticle, setSelectedArticle] = useState(new Set<Article>());
 
   useEffect(() => {
     (async () => {
@@ -31,6 +31,19 @@ function Stock() {
     })();
   }, []);
 
+  const remove = () => {
+    console.log("about to remove selected articles");
+    const ids = [...selectedArticle].map((a) => a.id);
+    console.log("ids: ", ids);
+    (async () => {
+      try {
+        await api.removeArticles(ids);
+      } catch (err) {
+        console.log("err: ", err);
+      }
+    })();
+  };
+
   return (
     <main>
       <h1>Liste des articles</h1>
@@ -40,7 +53,9 @@ function Stock() {
           <Link to="add">
             <button>Ajouter</button>
           </Link>
-          {selectedArticle.size > 0 && <button>Supprimer</button>}
+          {selectedArticle.size > 0 && (
+            <button onClick={remove}>Supprimer</button>
+          )}
         </nav>
         <div className="error">{errorMsg}</div>
         {isLoading ? (

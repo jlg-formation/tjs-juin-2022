@@ -16,6 +16,10 @@ class API {
     this.articles.push(article);
   }
 
+  async removeArticles(ids: string[]) {
+    throw new Error("Method not implemented.");
+  }
+
   async retrieveAllArticles(): Promise<Article[]> {
     console.log("appel http");
     await sleep(2000);
