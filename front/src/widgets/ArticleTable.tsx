@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { Article } from "../interfaces/Article";
 
-const ArticleTable: React.FC<{ articleList: Article[] }> = ({
+const ArticleTable: React.FC<{
+  articleList: Article[];
+  onChangeSelection: (selArt: Set<Article>) => void;
+}> = ({
   articleList,
+  onChangeSelection,
 }: {
   articleList: Article[];
+  onChangeSelection: (selArt: Set<Article>) => void;
 }) => {
   const [selectedArticle, setSelectedArticle] = useState(new Set<Article>());
 
@@ -18,6 +23,7 @@ const ArticleTable: React.FC<{ articleList: Article[] }> = ({
         newSet.add(article);
       }
       setSelectedArticle(newSet);
+      onChangeSelection(newSet);
     };
   };
 

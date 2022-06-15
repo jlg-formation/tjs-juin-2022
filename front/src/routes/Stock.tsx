@@ -10,6 +10,8 @@ function Stock() {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
+  const [selectedArticle, setSelectedArticle] = useState(new Set());
+
   useEffect(() => {
     (async () => {
       try {
@@ -38,13 +40,18 @@ function Stock() {
           <Link to="add">
             <button>Ajouter</button>
           </Link>
-          <button>Supprimer</button>
+          {selectedArticle.size > 0 && <button>Supprimer</button>}
         </nav>
         <div className="error">{errorMsg}</div>
         {isLoading ? (
           <div>Loading...</div>
         ) : (
-          <ArticleTable articleList={articles} />
+          <ArticleTable
+            articleList={articles}
+            onChangeSelection={(selArt) => {
+              setSelectedArticle(selArt);
+            }}
+          />
         )}
       </div>
     </main>
