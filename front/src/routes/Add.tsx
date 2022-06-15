@@ -1,6 +1,8 @@
+import { faCircleNotch, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Article, NewArticle } from "../interfaces/Article";
+import { NewArticle } from "../interfaces/Article";
 import api from "../services/api";
 
 function Add() {
@@ -75,7 +77,11 @@ function Add() {
           />
         </label>
         <button className="primary" disabled={isAdding}>
-          Ajouter
+          <FontAwesomeIcon
+            icon={isAdding ? faCircleNotch : faPlus}
+            spin={isAdding}
+          />
+          <span>Ajouter</span>
         </button>
       </form>
       <span>{errorMsg}</span>

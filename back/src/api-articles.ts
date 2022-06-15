@@ -13,7 +13,7 @@ let articles: Article[] = [
 ];
 
 app.use((req, res, next) => {
-  setTimeout(next, 1000);
+  setTimeout(next, 2000);
 });
 
 app.get("/articles", (req, res) => {

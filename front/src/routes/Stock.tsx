@@ -1,3 +1,10 @@
+import {
+  faPlus,
+  faRotateRight,
+  faSpinner,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Article } from "../interfaces/Article";
@@ -8,6 +15,7 @@ function Stock() {
   const [articles, setArticles] = useState([] as Article[]);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isRemoving, setIsRemoving] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
   const [selectedArticle, setSelectedArticle] = useState(new Set<Article>());
@@ -41,12 +49,15 @@ function Stock() {
     console.log("ids: ", ids);
     (async () => {
       try {
+        setIsRemoving(true);
         await api.removeArticles(ids);
-        setSelectedArticle(new Set());
         const remainingArticles = await api.retrieveAllArticles();
+        setSelectedArticle(new Set());
         setArticles(remainingArticles);
       } catch (err) {
         console.log("err: ", err);
+      } finally {
+        setIsRemoving(false);
       }
     })();
   };
@@ -56,25 +67,31 @@ function Stock() {
       <h1>Liste des articles</h1>
       <div className="content">
         <nav>
-          <button onClick={refresh}>Rafraîchir</button>
+          <button onClick={refresh} title="Rafraîchir">
+            <FontAwesomeIcon icon={faRotateRight} spin={isLoading} />
+          </button>
           <Link to="add">
-            <button>Ajouter</button>
+            <button title="Ajouter">
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
           </Link>
           {selectedArticle.size > 0 && (
-            <button onClick={remove}>Supprimer</button>
+            <button onClick={remove} title="Supprimer">
+              <FontAwesomeIcon
+                icon={isRemoving ? faSpinner : faTrashCan}
+                spin={isRemoving}
+              />
+            </button>
           )}
         </nav>
         <div className="error">{errorMsg}</div>
-        {isLoading ? (
-          <div>Loading...</div>
-        ) : (
-          <ArticleTable
-            articleList={articles}
-            onChangeSelection={(selArt) => {
-              setSelectedArticle(selArt);
-            }}
-          />
-        )}
+
+        <ArticleTable
+          articleList={articles}
+          onChangeSelection={(selArt) => {
+            setSelectedArticle(selArt);
+          }}
+        />
       </div>
     </main>
   );
