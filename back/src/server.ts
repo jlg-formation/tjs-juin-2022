@@ -6,7 +6,7 @@ import { api } from "./api-articles";
 
 const app = express();
 const port = 3500;
-const wwwDir = ".";
+const wwwDir = "../front/build";
 
 app.use(cors());
 app.use(morgan("tiny"));
