@@ -8,7 +8,6 @@ function Stock() {
   const [articles, setArticles] = useState([] as Article[]);
 
   const [isLoading, setIsLoading] = useState(false);
-  console.log("setIsLoading: ", typeof setIsLoading);
   const [errorMsg, setErrorMsg] = useState("");
 
   useEffect(() => {

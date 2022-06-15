@@ -1,5 +1,5 @@
 import { Article, NewArticle } from "../interfaces/Article";
-import { sleep } from "../utils";
+import { generateId, sleep } from "../utils";
 
 class API {
   articles = [
@@ -7,8 +7,13 @@ class API {
     { id: "2", name: "Marteau", price: 4.5, qty: 34 },
   ];
 
-  addArticle(article: NewArticle) {
-    throw new Error("Method not implemented.");
+  async addArticle(newArticle: NewArticle) {
+    await sleep(2000);
+    if (newArticle.name === "Trucxxx") {
+      throw new Error("cannot add a trucxxx");
+    }
+    const article = { ...newArticle, id: generateId() };
+    this.articles.push(article);
   }
 
   async retrieveAllArticles(): Promise<Article[]> {

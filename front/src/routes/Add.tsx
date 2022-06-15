@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Article, NewArticle } from "../interfaces/Article";
 import api from "../services/api";
 
@@ -6,6 +7,11 @@ function Add() {
   const [name, setName] = useState("Truc");
   const [price, setPrice] = useState(1);
   const [qty, setQty] = useState(1);
+
+  const [isAdding, setIsAdding] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const navigate = useNavigate();
 
   return (
     <main>
@@ -16,13 +22,19 @@ function Add() {
 
           (async () => {
             try {
+              setIsAdding(true);
               const article: NewArticle = {
                 name,
                 price,
                 qty,
               };
               await api.addArticle(article);
+              navigate("/stock");
             } catch (err) {
+              setIsAdding(false);
+              if (err instanceof Error) {
+                setErrorMsg(err.message);
+              }
               console.log("err: ", err);
             }
           })();
@@ -62,11 +74,11 @@ function Add() {
             onChange={(event) => setQty(+event.target.value)}
           />
         </label>
-        <button className="primary">Ajouter</button>
+        <button className="primary" disabled={isAdding}>
+          Ajouter
+        </button>
       </form>
-      <span>name: {name}</span>
-      <span>price: {price}</span>
-      <span>qty: {qty}</span>
+      <span>{errorMsg}</span>
     </main>
   );
 }
