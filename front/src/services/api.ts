@@ -1,6 +1,6 @@
 import { Article, NewArticle } from "../interfaces/Article";
 
-const URL = "http://localhost:3500/api/articles";
+const URL = "/api/articles";
 
 class API {
   articles: Article[] = [];
